@@ -1,9 +1,11 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors'
+import dotenv from 'dotenv'
 import todoRouter from './Routes/todoRoutes.js'
 const app=express();
 const PORT=4000;
+dotenv.config()
 
 
 //middleware
@@ -14,7 +16,7 @@ app.use(express.json())
 //api routes
 app.use("/api/todos",todoRouter)
 
-mongoose.connect("mongodb+srv://kharvichithraksha:lnLwMkqTDY5qn9RV@cluster0.lpyfmtl.mongodb.net/",
+mongoose.connect(process.env.MONGO_URI,
     {
         dbName:"TodoList"
     }
